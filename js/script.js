@@ -10,11 +10,15 @@ let slides = [
 		'images/slide-9.jpg'
 ]
 
+let play = 'play_arrow';
+let pause = 'pause'; 
 let currentImage = 0;
 let sliderImage = document.querySelector('.slider_image');
 let prevBtn = document.querySelector('.slider_button-prev');
 let nextBtn = document.querySelector('.slider_button-next');
-let autoplayBtn = document.querySelector('.slider_button-play');
+let playBtn = document.querySelector('.slider_button-play');
+playBtn.textContent = play;
+
 
 function nextImage() {
 	if(currentImage < slides.length - 1) {
@@ -39,13 +43,15 @@ function autoplay() {
 	if(interval) {
 		clearInterval(interval);
 		interval = null;
+		playBtn.textContent = play
 	} else {
 		interval = setInterval(() => {
 			nextImage();
 		}, 2000);	
+		playBtn.textContent = pause;
 	} 
 }
 
 prevBtn.addEventListener('click', prevImage);
 nextBtn.addEventListener('click', nextImage);
-autoplayBtn.addEventListener('click', autoplay);
+playBtn.addEventListener('click', autoplay);
